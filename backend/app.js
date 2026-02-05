@@ -3,6 +3,7 @@ import cors from "cors";
 import authRoutes from "./routes/auth.routes.js";
 import profileRoutes from "./routes/profile.routes.js";
 import admissionRoutes from "./routes/admission.routes.js";
+import courseRoutes from "./routes/course.routes.js";
 
 const app = express();
 
@@ -35,5 +36,6 @@ app.get(
 app.use("/api/auth", authRoutes);
 app.use("/api/profile", profileRoutes);
 app.use("/api/admissions", admissionRoutes);
+app.use("/api/courses", courseRoutes);
 
 export default app;
