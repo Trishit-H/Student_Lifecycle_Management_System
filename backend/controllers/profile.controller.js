@@ -10,16 +10,21 @@ export const createProfile = async (req, res) => {
     const userId = req.user.id;
 
     try {
+        // Applicants are not allowed to create profiles
+        if (req.user.role === "APPLICANT") {
+            return res
+                .status(403)
+                .json({ message: "Admission not approved yet" });
+        }
+
+
         // STUDENT
         if (role === "STUDENT") {
-            const profile = await StudentProfile.create({
-                userId,
-                enrollmentNumber: req.body.enrollmentNumber,
-                department: req.body.department,
-                semester: req.body.semester
-            });
-            return res.status(201).json(profile);
+            return res
+                .status(403)
+                .json({ message: "Profile already created automatically after approval" });
         }
+
 
         // FACULTY
         if (role === "FACULTY") {
